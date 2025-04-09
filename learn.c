@@ -1,17 +1,21 @@
 #include <stdio.h>
 #include <string.h>
 
+#define LOWER 0
+#define UPPER  300
+#define STEP 20
+
 int main() {
 
-  int lower = 0, upper = 300, step = 20, celcius;
+  int c;
 
-  for (int farenheit = lower; farenheit <= upper; farenheit += step) {
-
-    celcius = 5 * (farenheit - 32) / 9;
-
-    printf("%d\t%d\n", farenheit, celcius);
+  c = getchar();
+  while (c != EOF) {
+    printf("---");
+    putchar(c);
+    printf("+++");
+    c = getchar();
   }
   
-
   return 0;
 }
