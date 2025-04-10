@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "calc.h"
 
-#define MAXOP   100  // sets the maximum digits an operand can have
+#define MAXOP 100  // sets the maximum digits an operand can have
 
 int getop(char []);
 void push(double);
