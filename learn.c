@@ -1,42 +1,50 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
+#include "calc.h"
 
-int strindex(const char *source, const char *pattern) {
-  int i, j, k;
-  for (i = 0; source[i] != '\0'; i++) {
-    for (j = i, k = 0; pattern[k] != '\0' && source[j] == pattern[k]; j++, k++);
-    
-    if (pattern[k] == '\0') {
-      return i;
-    }
-  }
+#define MAXOP   100  // sets the maximum digits an operand can have
 
-  return -1;
-}
-
-int strlastindex(const char *source, const char *pattern) {
-  int i, j, k;
-
-  int lastindex = -1;
-
-  for (i = 0; source[i] != '\0'; i++) {
-    for (j = i, k = 0; pattern[k] != '\0' && source[j] == pattern[k]; j++, k++);
-    
-    if (pattern[k] == '\0') {
-      lastindex = i;
-    }
-  }
-
-  return lastindex;
-}
+int getop(char []);
+void push(double);
+double pop(void);
 
 int main() {
 
-  char *source = "one two three one two three";
-  char *pattern = "four";
+  int type;
+  double op2;
+  char s[MAXOP];
 
-  printf("Index of '%s' in '%s' is %d\n", pattern, source, strindex(source, pattern));
-  printf("Last index of '%s' in '%s' is %d\n", pattern, source, strlastindex(source, pattern));
+  while((type = getop(s)) != EOF) {
+    switch (type)
+    {
+    case NUMBER:
+      push(atof(s));
+      break;
+    case '+':
+      push(pop() + pop());
+      break;
+    case '*':
+      push(pop() * pop());
+      break;
+    case '-':
+      op2 = pop();
+      push(pop() - op2);
+      break;
+    case '/':
+      op2 = pop();
+      if (op2 != 0.0) 
+        push(pop() / op2);
+      else 
+        printf("error: zero divsion\n");
+      break;
+    case '\n':
+      printf("\t%.8g\n", pop());
+      break;
+    default:
+      printf("error: unknown command %s\n", s);
+      break;
+    }
+  }
 
   return 0;
 }
