@@ -4,10 +4,6 @@
 
 #define MAXOP 100  // sets the maximum digits an operand can have
 
-int getop(char []);
-void push(double);
-double pop(void);
-
 int main() {
 
   int type;
