@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <math.h>
 
-struct point {
+typedef struct point {
   double x;
   double y;
-};
+} Point;
 
-double distance(struct point pointA, struct point pointB) {
+double distance(Point pointA, Point pointB) {
   // y / x
 
   return fabs((pointA.y - pointB.y) / (pointA.x - pointB.x));
@@ -14,12 +14,12 @@ double distance(struct point pointA, struct point pointB) {
 
 int main() {
 
-  struct point pointA;
+  Point pointA;
 
   printf("PointA (x,y): ");
   scanf("%lf,%lf", &pointA.x, &pointA.y);
   
-  struct point pointB;
+  Point pointB;
 
   printf("PointB (x,y): ");
   scanf("%lf,%lf", &pointB.x, &pointB.y);
