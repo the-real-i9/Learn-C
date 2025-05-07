@@ -7,9 +7,7 @@ typedef struct point {
 } Point;
 
 double distance(Point pointA, Point pointB) {
-  // y / x
-
-  return fabs((pointA.y - pointB.y) / (pointA.x - pointB.x));
+  return fabs(sqrt(pow(pointB.x - pointA.x, 2) + pow(pointB.y - pointA.y, 2)));
 }
 
 int main() {
@@ -23,6 +21,11 @@ int main() {
 
   printf("PointB (x,y): ");
   scanf("%lf,%lf", &pointB.x, &pointB.y);
+
+  if (feof(stdin)) {
+    printf("\nProgram terminated.\n");
+    return 0;
+  }
 
   printf("The distance between PointA and PointB is %.1f\n", distance(pointA, pointB));
 
