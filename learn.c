@@ -11,6 +11,7 @@ double distance(Point pointA, Point pointB) {
 }
 
 int main() {
+  // the colors are waay too deep
 
   Point pointA;
 
